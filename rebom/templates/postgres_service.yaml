@@ -5,6 +5,7 @@ metadata:
   namespace: default
   labels:
     app: rebom
+    {{- include "rebom.labels" . | nindent 4 }}
 spec:
   selector:
     app: rebom

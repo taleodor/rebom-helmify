@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: rebom-ingress
   namespace: default
+  labels:
+    {{- include "rebom.labels" . | nindent 4 }}
 spec:
   rules:
   - http:

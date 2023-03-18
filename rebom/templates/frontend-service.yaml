@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: rebom-frontend-service
   namespace: default
+  labels:
+    {{- include "rebom.labels" . | nindent 4 }}
 spec:
   selector:
     app: rebom
