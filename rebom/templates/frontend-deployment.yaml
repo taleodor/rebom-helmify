@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rebom-frontend
-  namespace: default
+  name: {{ .Release.Name }}-frontend
+  namespace: {{ .Release.Namespace }}
   labels:
     name: rebom-frontend
     app: rebom
@@ -26,7 +26,7 @@ spec:
         image: registry.relizahub.com/library/rebom-frontend
         env:
         - name: BACKEND_HOST
-          value: rebom-backend-service
+          value: {{ .Release.Name }}-backend-service
         - name: BACKEND_PORT
           value: "4000"
         ports:

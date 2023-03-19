@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: postgres
-  namespace: default
+  name: {{ .Release.Name }}-postgres
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "rebom.labels" . | nindent 4 }}
 spec:
@@ -12,7 +12,7 @@ spec:
       name: postgres
       {{- include "rebom.selectorLabels" . | nindent 6 }}
   replicas: 1
-  serviceName: postgres
+  serviceName: {{ .Release.Name }}-postgres
   template:
     metadata:
       labels:
@@ -27,7 +27,7 @@ spec:
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: pgpassword
+                name: {{ .Release.Name }}-pgpassword
                 key: password
           ports:
           - containerPort: 5432
