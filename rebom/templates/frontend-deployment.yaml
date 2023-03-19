@@ -8,7 +8,7 @@ metadata:
     app: rebom
     {{- include "rebom.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.frontend.replicaCount }}
   selector:
     matchLabels:
       app: rebom

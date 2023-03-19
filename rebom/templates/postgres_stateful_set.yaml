@@ -11,7 +11,7 @@ spec:
       app: rebom
       name: postgres
       {{- include "rebom.selectorLabels" . | nindent 6 }}
-  replicas: 1
+  replicas: {{ .Values.postgresql.replicaCount }}
   serviceName: {{ .Release.Name }}-postgres
   template:
     metadata:
@@ -42,4 +42,4 @@ spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
-            storage: 5Gi
+            storage: {{ .Values.postgresql.storage }}
