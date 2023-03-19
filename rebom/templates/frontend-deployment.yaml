@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: rebom-frontend
-        image: registry.relizahub.com/library/rebom-frontend
+        image: {{ .Values.frontend.image }}
         env:
         - name: BACKEND_HOST
           value: {{ .Release.Name }}-backend-service

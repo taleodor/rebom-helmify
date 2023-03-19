@@ -1,0 +1,8 @@
+backend:
+  image: registry.relizahub.com/library/rebom-backend
+frontend:
+  image: registry.relizahub.com/library/rebom-frontend
+postgresql:
+  image: postgres:14.1
+flyway:
+  image: flyway/flyway:8.4.4-alpine

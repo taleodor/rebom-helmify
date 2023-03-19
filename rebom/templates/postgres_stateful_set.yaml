@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: postgres-container
-          image: postgres:14.1
+          image: {{ .Values.postgresql.image }}
           env:
           - name: POSTGRES_PASSWORD
             valueFrom:

@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: rebom-backend-container
-        image: registry.relizahub.com/library/rebom-backend
+        image: {{ .Values.backend.image }}
         env:
         - name: POSTGRES_HOST
           value: {{ .Release.Name }}-postgres
@@ -38,13 +38,13 @@ spec:
         - containerPort: 4000
       initContainers:
       - name: rebom-backend-init
-        image: registry.relizahub.com/library/rebom-backend
+        image: {{ .Values.backend.image }}
         command: ["cp", "-r", "/app/migrations/.", "/flyway/sql"]
         volumeMounts:
         - mountPath: /flyway/sql
           name: migrations-sql
       - name: rebom-backend-migrations
-        image: flyway/flyway:8.4.4-alpine
+        image: {{ .Values.flyway.image }}
         env:
         - name: POSTGRES_JDBC
           value: jdbc:postgresql://{{ .Release.Name }}-postgres:5432/postgres
